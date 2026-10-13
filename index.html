@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Papel Express: papel higiénico institucional, toallas y servilletas a precio de mayoreo y menudeo en Atizapán, Estado de México.">
+<title>Papel Express</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,500..900;1,62..125,700..900&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,700;1,800&display=swap">
+<style>
+/* Layout: brand header strip, catalog as a "ficha técnica" grid with filters, order slip that builds a WhatsApp message */
+:root{
+  --navy:#0d2a63;
+  --green:#3fae2a;
+  --green-ink:#2a8a1a;
+  --bg:#f5f8f4;
+  --surface:#ffffff;
+  --fg:#14213d;
+  --muted:#5b6780;
+  --line:#dfe6dc;
+  --chip:#e8f3e4;
+  --heading:var(--navy);
+  --on-accent:#ffffff;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --body:"Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0a1730;--surface:#112246;--fg:#e6ecf7;--muted:#9fb0cc;--line:#22365f;--chip:#173a2a;
+  --heading:#ffffff;--green-ink:#6fd655;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0a1730;--surface:#112246;--fg:#e6ecf7;--muted:#9fb0cc;--line:#22365f;--chip:#173a2a;
+  --heading:#ffffff;--green-ink:#6fd655;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px}
+h1,h2,h3{font-family:var(--display);color:var(--heading);text-wrap:balance;margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--navy);color:#fff}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:10px}
+.top b{font-family:var(--display);font-style:italic;font-weight:900;font-size:20px;letter-spacing:.01em}
+.top b span{color:var(--green)}
+.top nav{display:flex;gap:18px;font-weight:600;font-size:14px}
+.top nav a{text-decoration:none;opacity:.9}
+.top nav a:hover{opacity:1;text-decoration:underline}
+.cart-btn{background:var(--green);color:#fff;border:0;border-radius:999px;padding:8px 14px;font:700 14px var(--body);cursor:pointer;white-space:nowrap}
+@media (max-width:640px){.top nav{display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:var(--surface);border-bottom:1px solid var(--line)}
+.hero::before,.hero::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.hero::before{width:900px;height:900px;left:-520px;bottom:-760px;background:var(--navy)}
+.hero::after{width:900px;height:900px;left:-480px;bottom:-790px;border:28px solid var(--green);opacity:.95}
+.hero .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr 1fr;gap:32px;align-items:center;padding-block:40px 56px}
+.logo-card{background:#fff;border-radius:18px;padding:10px;display:inline-block;max-width:460px}
+.logo-card img{display:block;width:100%}
+.tag{font-family:var(--body);font-style:italic;font-weight:800;font-size:clamp(24px,3.4vw,34px);color:var(--heading);line-height:1.2;margin:22px 0 4px}
+.tag2{font-style:italic;font-weight:700;font-size:clamp(18px,2.4vw,24px);color:var(--green-ink);margin:0;display:inline-block;border-bottom:4px solid var(--green);padding-bottom:2px}
+.lead{color:var(--muted);max-width:52ch;margin:18px 0 24px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 22px;font:700 15px var(--body);text-decoration:none;border:2px solid var(--navy);cursor:pointer}
+.btn.primary{background:var(--green);border-color:var(--green);color:#fff}
+.btn.ghost{background:transparent;color:var(--heading);border-color:currentColor}
+.hero-img{border-radius:22px;overflow:hidden;box-shadow:0 20px 50px -20px rgba(13,42,99,.45);max-width:100%}
+.hero-img img{display:block;width:100%}
+@media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero::before,.hero::after{display:none}}
+
+/* promises */
+.promises{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-block:28px;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.promise{display:flex;gap:14px;align-items:center;padding:18px 22px;min-width:0}
+.promise+.promise{border-left:2px solid var(--green)}
+.promise svg{flex:none;width:46px;height:46px;color:var(--green)}
+.promise h3{font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;font-stretch:90%}
+.promise p{margin:2px 0 0;color:var(--muted);font-size:14px}
+@media (max-width:760px){.promises{grid-template-columns:1fr}.promise+.promise{border-left:0;border-top:2px solid var(--green)}}
+
+/* catalog */
+section{padding-block:28px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:18px}
+.sec-head h2{font-size:clamp(30px,5vw,52px);font-weight:900;font-stretch:72%;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.sec-head p{margin:6px 0 0;color:var(--muted)}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{border:1.5px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:7px 14px;font:600 14px var(--body);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.card .ph{position:relative;background:#fff;aspect-ratio:16/10;max-width:100%}
+.card .ph img{width:100%;height:100%;object-fit:contain;display:block}
+.badge{position:absolute;top:10px;left:10px;font:800 13px var(--display);letter-spacing:.05em;text-transform:uppercase;color:#fff;padding:5px 12px;border-radius:8px}
+.b-junior{background:#22a94a}.b-jumbo{background:#b03a8a}.b-toalla{background:#2f9be0}.b-gris{background:#7b7f86}
+.body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.body h3{font-size:20px;font-weight:800}
+.specs{margin:0;display:grid;grid-template-columns:auto 1fr;font-size:14px}
+.specs dt,.specs dd{margin:0;padding:4px 0;border-bottom:1px solid var(--line)}
+.specs dt{color:var(--muted)}
+.specs dd{text-align:right;font-weight:600;font-variant-numeric:tabular-nums}
+.feat{font-size:13px;color:var(--muted);margin:0}
+.prices{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--navy);border-radius:12px;overflow:hidden;margin-top:auto}
+:root[data-theme="dark"] .prices{border-color:var(--line)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .prices{border-color:var(--line)}}
+.prices div{padding:8px 10px}
+.prices div+div{border-left:1px solid var(--line)}
+.prices small{display:block;font:700 11px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.prices strong{font:800 22px var(--display);color:var(--heading);font-variant-numeric:tabular-nums}
+.saving{font-size:13px;background:var(--chip);color:var(--green-ink);border-radius:8px;padding:6px 10px;font-weight:600}
+.add{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.add select{flex:1;min-width:0;padding:8px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);color:var(--fg);font:600 14px var(--body)}
+.add button{border:0;border-radius:10px;background:var(--navy);color:#fff;font:700 14px var(--body);padding:9px 14px;cursor:pointer}
+:root[data-theme="dark"] .add button{background:var(--green)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .add button{background:var(--green)}}
+
+/* order */
+.order{display:grid;grid-template-columns:1.2fr 1fr;gap:24px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;min-width:0}
+.panel h3{font-size:22px;font-weight:800;margin-bottom:10px}
+.lines{list-style:none;margin:0;padding:0}
+.lines li{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line);font-size:15px}
+.lines .amt{font-variant-numeric:tabular-nums;font-weight:700}
+.lines button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:18px;line-height:1}
+.empty{color:var(--muted);padding:12px 0}
+.total{display:flex;justify-content:space-between;font:800 22px var(--display);color:var(--heading);padding-top:12px;font-variant-numeric:tabular-nums}
+.ship{margin-top:10px}
+.ship .bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.ship .bar i{display:block;height:100%;width:0;background:var(--green);transition:width .3s}
+.ship p{margin:6px 0 0;font-size:14px;font-weight:600;color:var(--muted)}
+.ship.ok p{color:var(--green-ink)}
+.contact a{color:var(--green-ink);font-weight:700}
+.msg{width:100%;min-height:140px;margin-top:12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--fg);font:14px/1.5 var(--body);padding:10px;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.note{font-size:13px;color:var(--muted)}
+.contact dl{margin:0;display:grid;gap:12px}
+.contact dt{font:700 12px var(--display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.contact dd{margin:2px 0 0;font-weight:600}
+.pending{background:#fff4d6;color:#7a5600;border-radius:6px;padding:1px 8px;font-size:13px;font-weight:700}
+@media (max-width:860px){.order{grid-template-columns:1fr}}
+
+footer{background:var(--navy);color:#cfd8ea;margin-top:28px}
+footer .wrap{padding-block:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:14px}
+footer b{color:#fff}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:30}
+@media (prefers-reduced-motion:no-preference){.card{transition:transform .15s}.card:hover{transform:translateY(-3px)}}
+</style>
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <b>PAPEL <span>EXPRESS</span></b>
+    <nav aria-label="Secciones"><a href="#catalogo">Catálogo</a><a href="#pedido">Pedido</a><a href="#contacto">Contacto</a></nav>
+    <button class="cart-btn" id="cartBtn" type="button">Mi pedido · <span id="cartCount">0</span></button>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <div class="logo-card"><img src="img/logo.jpg" alt="Logotipo de Papel Express" width="900" height="364"></div>
+      <p class="tag">¡Compra calidad, ahorra más!</p>
+      <p class="tag2">Precios que te convienen.</p>
+      <p class="lead">Papel higiénico institucional, toallas para manos y servilletas para tu negocio, oficina u hogar. Vendemos por caja a precio de mayoreo o por pieza.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#catalogo">Ver catálogo y precios</a>
+        <a class="btn ghost" href="#pedido">Armar mi pedido</a>
+      </div>
+    </div>
+    <div class="hero-img"><img src="img/hero.jpg" alt="Rollos de papel higiénico de distintos tamaños"></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="promises">
+    <div class="promise">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="24" cy="24" r="21"/><ellipse cx="20" cy="31" rx="7" ry="2.5"/><path d="M13 31v-4c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v4"/><ellipse cx="28" cy="19" rx="7" ry="2.5"/><path d="M21 19v6c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5v-6"/></svg>
+      <div><h3>Mejores precios</h3><p>Por caja cada pieza te sale más barata.</p></div>
+    </div>
+    <div class="promise">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="24" cy="24" r="21"/><path d="M12 15h4l3 13h13l3-9H17"/><circle cx="20" cy="33" r="1.8" fill="currentColor"/><circle cx="30" cy="33" r="1.8" fill="currentColor"/></svg>
+      <div><h3>Venta a mayoreo</h3><p>Surtimos negocios, oficinas e instituciones.</p></div>
+    </div>
+    <div class="promise">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="24" cy="24" r="21"/><path d="M15 33c0-11 7-18 19-19 0 12-7 19-17 19M15 33l10-10"/></svg>
+      <div><h3>Biodegradable</h3><p>Papel que respeta el medio ambiente.</p></div>
+    </div>
+  </div>
+
+  <section id="catalogo">
+    <div class="sec-head">
+      <div><h2>Ficha técnica de productos</h2><p>Todos los precios en pesos mexicanos.</p></div>
+      <div class="filters" role="group" aria-label="Filtrar productos" id="filters">
+        <button type="button" data-f="all" aria-pressed="true">Todos</button>
+        <button type="button" data-f="higienico" aria-pressed="false">Papel higiénico</button>
+        <button type="button" data-f="toalla" aria-pressed="false">Toallas</button>
+        <button type="button" data-f="servilleta" aria-pressed="false">Servilletas</button>
+      </div>
+    </div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section id="pedido">
+    <div class="sec-head"><div><h2>Arma tu pedido</h2><p>Agrega productos desde el catálogo y envíanos la lista por WhatsApp.</p></div></div>
+    <div class="order">
+      <div class="panel">
+        <h3>Tu pedido</h3>
+        <ul class="lines" id="lines"></ul>
+        <div class="total"><span>Total estimado</span><span id="total">$0.00</span></div>
+        <div class="ship" id="ship"><div class="bar"><i id="shipBar"></i></div><p id="shipTxt"></p></div>
+        <label class="note" for="msg" style="display:block;margin-top:14px">Mensaje listo para enviar:</label>
+        <textarea class="msg" id="msg" readonly></textarea>
+        <div class="row">
+          <button class="btn primary" type="button" id="copyBtn">Copiar mensaje</button>
+          <a class="btn ghost" id="waBtn" href="#contacto">Enviar por WhatsApp</a>
+          <button class="btn ghost" type="button" id="clearBtn">Vaciar</button>
+        </div>
+        <p class="note">El total es una estimación con los precios del catálogo. Te confirmamos disponibilidad y envío por mensaje.</p>
+      </div>
+      <div class="panel contact" id="contacto">
+        <h3>Contacto</h3>
+        <dl>
+          <div><dt>WhatsApp / Celular</dt><dd><a href="https://wa.me/525513381179" target="_blank" rel="noopener">+52 55 1338 1179</a></dd></div>
+          <div><dt>Teléfono</dt><dd>+52 591 113 8921</dd></div>
+          <div><dt>Correo</dt><dd>papelexpress@codexor.com.mx</dd></div>
+          <div><dt>Horario de servicio</dt><dd>7:00 am a 5:00 pm</dd></div>
+          <div><dt>Entregas a domicilio</dt><dd>Sí, con compra mínima de $5,000.00</dd></div>
+          <div><dt>Formas de pago</dt><dd>Efectivo · Transferencia · Tarjeta en terminal punto de venta</dd></div>
+          <div><dt>Formas de compra</dt><dd>Mayoreo por caja · Menudeo por pieza</dd></div>
+          <div><dt>Dirección</dt><dd>Carretera Atizapán–Nicolás Romero No. 28, Interior R2<br>Plaza Atizapán, Col. Pedregal de Atizapán<br>C.P. 52948, Atizapán de Zaragoza, Estado de México<br><a href="https://www.google.com/maps/search/?api=1&amp;query=Carretera+Atizapan+Nicolas+Romero+28+Plaza+Atizapan+Pedregal+de+Atizapan+52948" target="_blank" rel="noopener">Ver en Google Maps</a></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span><b>Papel Express</b> · ¡Compra calidad, ahorra más!</span><span>Plaza Atizapán, Atizapán de Zaragoza, Edo. Méx. · Horario 7:00 am a 5:00 pm</span><span>Precios sujetos a cambio sin previo aviso.</span></div>
+</footer>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+const WHATSAPP = "525513381179";
+const MIN_ENVIO = 5000;
+const P = [
+  {id:"junior150",cat:"higienico",name:"Junior 150",badge:"b-junior",img:"img/junior150.jpg",specs:[["Metraje o peso","150 m o 390 g"],["Tamaño","21.5 × 8.5 cm"],["Contenido","12 pz"]],feat:"Doble hoja con grabado",caja:255,pieza:22,n:12,u:"pieza"},
+  {id:"junior180",cat:"higienico",name:"Junior 180",badge:"b-junior",img:"img/junior180.jpg",specs:[["Metraje o peso","180 m o 460 g"],["Tamaño","22 × 8.5 cm"],["Contenido","12 pz"]],feat:"Doble hoja con grabado",caja:303,pieza:26,n:12,u:"pieza"},
+  {id:"jumbo240",cat:"higienico",name:"Jumbo 240",badge:"b-jumbo",img:"img/jumbo240.jpg",specs:[["Metraje o peso","240 m o 630 g"],["Tamaño","26 × 8.5 cm"],["Contenido","6 pz"]],feat:"Doble hoja con grabado",caja:211.5,pieza:36,n:6,u:"pieza"},
+  {id:"jumbo360",cat:"higienico",name:"Jumbo 360",badge:"b-jumbo",img:"img/jumbo360.jpg",specs:[["Metraje o peso","360 m o 950 g"],["Tamaño","29 × 8.5 cm"],["Contenido","6 pz"]],feat:"Doble hoja con grabado",caja:309,pieza:53,n:6,u:"pieza"},
+  {id:"jumbo500",cat:"higienico",name:"Jumbo 500",badge:"b-jumbo",img:"img/jumbo500.jpg",specs:[["Metraje o peso","500 m o 1350 g"],["Tamaño","32 × 8.5 cm"],["Contenido","6 pz"]],feat:"Doble hoja con grabado",caja:373.5,pieza:64,n:6,u:"pieza"},
+  {id:"higienico",cat:"higienico",name:"Higiénico Casa",badge:"b-gris",img:"img/higienico.jpg",specs:[["Hojas o peso","430 hojas o 110 g"],["Tamaño","12 × 9.5 cm"],["Contenido","24 pz"]],feat:"Doble hoja con grabado",caja:165,pieza:10,n:24,u:"pieza"},
+  {id:"toalla80",cat:"toalla",name:"Toalla 80",badge:"b-toalla",img:"img/toalla80.jpg",specs:[["Metraje o peso","80 m o 540 g"],["Tamaño","15 × 19 cm"],["Contenido","6 pz"]],feat:"Una hoja con grabado",caja:184.5,pieza:32,n:6,u:"pieza"},
+  {id:"toalla180",cat:"toalla",name:"Toalla 180",badge:"b-toalla",img:"img/toalla180.jpg",specs:[["Metraje o peso","120 m o 800 g"],["Tamaño","16 × 19 cm"],["Contenido","6 pz"]],feat:"Una hoja con grabado",caja:355.5,pieza:61,n:6,u:"pieza"},
+  {id:"interblanca",cat:"toalla",name:"Interdoblada Blanca",badge:"b-gris",img:"img/interblanca.jpg",specs:[["Caja","20 paquetes"],["Contenido total","2000 pz"],["Tamaño c/u","20 × 23 cm"]],feat:"Una hoja con grabado",caja:229.5,pieza:12,n:20,u:"paquete"},
+  {id:"intercafe",cat:"toalla",name:"Interdoblada Café",badge:"b-gris",img:"img/intercafe.jpg",specs:[["Caja","20 paquetes"],["Contenido total","2000 pz"],["Tamaño c/u","20 × 23 cm"]],feat:"Una hoja con grabado",caja:223.5,pieza:12,n:20,u:"paquete"},
+  {id:"servitoalla",cat:"toalla",name:"Servitoalla",badge:"b-gris",img:"img/servitoalla.jpg",specs:[["Rollo","600 hojas"],["Tamaño","28 cm"],["Contenido","6 pz"]],feat:"Una hoja con grabado",caja:346.5,pieza:60,n:6,u:"rollo"},
+  {id:"servch",cat:"servilleta",name:"Servilleta Café CH",badge:"b-gris",img:"img/servch.jpg",specs:[["Colchón","5 paquetes de 500 pz"],["Tamaño","12 × 10 cm"],["Contenido","2500 pz"]],feat:"Una hoja con grabado",caja:147,pieza:30,n:5,u:"paquete"},
+  {id:"servgd",cat:"servilleta",name:"Servilleta Café GD",badge:"b-gris",img:"img/servgd.jpg",specs:[["Colchón","5 paquetes de 500 pz"],["Tamaño","13 × 11 cm"],["Contenido","2500 pz"]],feat:"Una hoja con grabado",caja:154.5,pieza:32,n:5,u:"paquete"},
+];
+const $=s=>document.querySelector(s);
+const mx=v=>"$"+v.toLocaleString("es-MX",{minimumFractionDigits:2,maximumFractionDigits:2});
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+let cart={};
+try{cart=JSON.parse(localStorage.getItem("pe-cart")||"{}")||{}}catch(e){cart={}}
+function save(){try{localStorage.setItem("pe-cart",JSON.stringify(cart))}catch(e){}}
+
+function card(p){
+  const per=p.caja/p.n, save=Math.round((1-per/p.pieza)*100);
+  return `<article class="card" data-cat="${p.cat}">
+    <div class="ph"><img src="${p.img}" alt="${esc(p.name)}" loading="lazy"><span class="badge ${p.badge}">${esc(p.name)}</span></div>
+    <div class="body">
+      <h3>${esc(p.name)}</h3>
+      <dl class="specs">${p.specs.map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>
+      <p class="feat">${esc(p.feat)}</p>
+      <div class="prices"><div><small>Mayoreo caja</small><strong>${mx(p.caja)}</strong></div><div><small>Menudeo ${p.u}</small><strong>${mx(p.pieza)}</strong></div></div>
+      ${save>0?`<div class="saving">Por caja sale a ${mx(per)} por ${p.u} (ahorras ${save}%)</div>`:""}
+      <div class="add">
+        <label class="note" for="sel-${p.id}" hidden>Presentación</label>
+        <select id="sel-${p.id}"><option value="caja">Caja (${mx(p.caja)})</option><option value="pieza">Por ${p.u} (${mx(p.pieza)})</option></select>
+        <button type="button" data-add="${p.id}">Agregar</button>
+      </div>
+    </div></article>`;
+}
+$("#grid").innerHTML=P.map(card).join("");
+
+$("#filters").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;
+  document.querySelectorAll("#filters button").forEach(x=>x.setAttribute("aria-pressed",x===b));
+  document.querySelectorAll(".card").forEach(c=>c.hidden=!(b.dataset.f==="all"||c.dataset.cat===b.dataset.f));
+});
+
+function toast(t){const el=$("#toast");el.textContent=t;el.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>el.hidden=true,1800)}
+
+$("#grid").addEventListener("click",e=>{
+  const b=e.target.closest("[data-add]");if(!b)return;
+  const id=b.dataset.add, kind=$("#sel-"+id).value, key=id+"|"+kind;
+  cart[key]=(cart[key]||0)+1;save();render();
+  const p=P.find(x=>x.id===id);toast(`${p.name} agregado al pedido`);
+});
+
+function render(){
+  const keys=Object.keys(cart).filter(k=>cart[k]>0&&P.some(p=>p.id===k.split("|")[0]));
+  let total=0,count=0,txt=["Hola Papel Express, quiero hacer este pedido:",""];
+  $("#lines").innerHTML=keys.length?keys.map(k=>{
+    const [id,kind]=k.split("|"),p=P.find(x=>x.id===id),q=cart[k];
+    const price=kind==="caja"?p.caja:p.pieza,amt=price*q,label=kind==="caja"?(q>1?"cajas":"caja"):p.u+(q>1?"s":"");
+    total+=amt;count+=q;txt.push(`• ${q} ${label} de ${p.name} — ${mx(amt)}`);
+    return `<li><span>${q} ${label} · <b>${esc(p.name)}</b></span><span class="amt">${mx(amt)}</span><button type="button" data-rm="${k}" aria-label="Quitar uno de ${esc(p.name)}">−</button></li>`;
+  }).join(""):`<li class="empty">Todavía no agregas productos. Elige caja o pieza en el catálogo y pulsa “Agregar”.</li>`;
+  txt.push("",`Total estimado: ${mx(total)}`);
+  $("#total").textContent=mx(total);$("#cartCount").textContent=count;
+  const ok=total>=MIN_ENVIO;
+  $("#shipBar").style.width=Math.min(100,total/MIN_ENVIO*100)+"%";
+  $("#ship").classList.toggle("ok",ok);
+  $("#shipTxt").textContent=ok?"Tu pedido ya califica para entrega a domicilio.":`Te faltan ${mx(MIN_ENVIO-total)} para entrega a domicilio (mínimo ${mx(MIN_ENVIO)}). También puedes recoger en tienda.`;
+  if(keys.length)txt.push(ok?"Quiero entrega a domicilio.":"Paso a recoger a la tienda.");
+  $("#msg").value=keys.length?txt.join("\n"):"";
+  const wa=$("#waBtn");
+  if(WHATSAPP&&keys.length){wa.href="https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(txt.join("\n"));wa.target="_blank";wa.rel="noopener"}
+  else{wa.href="#contacto";wa.removeAttribute("target")}
+}
+$("#lines").addEventListener("click",e=>{const b=e.target.closest("[data-rm]");if(!b)return;cart[b.dataset.rm]--;if(cart[b.dataset.rm]<=0)delete cart[b.dataset.rm];save();render()});
+$("#clearBtn").addEventListener("click",()=>{cart={};save();render();toast("Pedido vaciado")});
+$("#cartBtn").addEventListener("click",()=>$("#pedido").scrollIntoView({behavior:"smooth"}));
+$("#copyBtn").addEventListener("click",()=>{
+  const m=$("#msg");if(!m.value){toast("Agrega productos primero");return}
+  navigator.clipboard.writeText(m.value).then(()=>toast("Mensaje copiado"),()=>{m.select();toast("Selecciona y copia el texto")});
+});
+render();
+</script>
+
+</body>
+</html>
